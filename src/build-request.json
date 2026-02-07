@@ -1,0 +1,40 @@
+{
+  "kind": "build_request",
+  "title": "Update footer website link to open www.vinodelectricals.com",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-25",
+      "text": "Add or update the website link shown in the site footer so that its link destination (href) opens exactly https://www.vinodelectricals.com, and the displayed link text is exactly \"www.vinodelectricals.com\" (no protocol).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-7",
+          "msg-10",
+          "msg-12"
+        ],
+        "quotes": [
+          "the link through which website will open that should only be www.vinodelectricals.com",
+          "1",
+          "build"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The footer contains a visible website link whose displayed text is exactly \"www.vinodelectricals.com\".",
+        "Clicking the footer website link navigates to (or opens) exactly https://www.vinodelectricals.com.",
+        "No other footer links (e.g., the Admin link) are changed or broken."
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not modify files under frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, or anything under frontend/src/components/ui."
+  ],
+  "nonGoals": [
+    "Do not change any backend canister logic.",
+    "Do not redesign unrelated footer content or change contact details."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}

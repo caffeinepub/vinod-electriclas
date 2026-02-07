@@ -1,0 +1,19 @@
+{
+  "frontend/src/App.tsx": "Main application component with QueryClientProvider and hash-based routing that switches between the home view (marketing site) and admin panel view.",
+  "frontend/src/components/site/Header.tsx": "Sticky header with the newly uploaded VE logo (WhatsApp Image 2026-02-07 at 9.27.57 PM.jpeg), business name, responsive navigation (Products instead of Services), and \"Request a Quote\" CTA with smooth scroll functionality.",
+  "frontend/src/components/site/Footer.tsx": "Footer displaying company branding, contact information, copyright text, a visible website link to https://www.vinodelectricals.com, and a small admin link for accessing the admin panel.",
+  "frontend/src/components/sections/HeroSection.tsx": "Hero section with headline, description, CTA buttons, and updated hero image (vinod-electriclas-hero-real.dim_1600x900.png) showing real electrical panels and meters with accurate alt text.",
+  "frontend/src/components/sections/ServicesSection.tsx": "Products section displaying four product categories with icons and descriptions, plus a new responsive gallery grid showcasing four real panel and meter installation photos with accurate English alt text.",
+  "frontend/src/components/sections/AboutSection.tsx": "About section describing Vinod Electriclas as an electrical equipment provider/supplier for panels, meters, and motors with focus on quality and technical expertise.",
+  "frontend/src/components/sections/WhyChooseUsSection.tsx": "Why Choose Us section displaying six B2B-relevant differentiators (quality assurance, documentation, customization, delivery, technical support, turnaround) with icons in responsive grid.",
+  "frontend/src/components/sections/ContactSection.tsx": "Contact section with business contact details and validated contact form that displays success and error alerts while keeping the form usable after errors.",
+  "frontend/src/hooks/useContactForm.ts": "Custom hook managing contact form state and validation that submits to the backend via React Query mutation instead of localStorage.",
+  "frontend/src/hooks/useQueries.ts": "React Query hooks for backend interactions including admin checks, submissions fetching, contact form submission, and user profile management with proper actor and identity dependencies.",
+  "frontend/src/index.css": "Global styles with warm industrial OKLCH color palette (amber/orange primary), smooth scrolling, and focus-visible accessibility styles.",
+  "frontend/tailwind.config.js": "Tailwind configuration with extended warm industrial color tokens, custom shadows, and Inter font family.",
+  "frontend/index.html": "HTML entry point with updated title and meta description reflecting panels, meters, and motors business positioning.",
+  "frontend/public/assets/generated/WhatsApp Image 2026-02-07 at 9.27.57 PM (3)-2.jpeg": "Uploaded company logo image (VE logo with blue and orange circular design, electrical plug motif) used in header and footer.",
+  "frontend/public/assets/generated/WhatsApp Image 2026-02-07 at 9.27.57 PM (3)-3.jpeg": "Backup uploaded company logo image (identical to -2.jpeg) kept available as alternative logo file.",
+  "frontend/src/components/auth/LoginButton.tsx": "Reusable Internet Identity login/logout button component that clears React Query cache on logout.",
+  "frontend/src/components/admin/AdminPage.tsx": "Admin panel page with Internet Identity authentication, user profile setup dialog, admin authorization check, and view-only table of contact submissions with loading, empty, and access-denied states."
+}

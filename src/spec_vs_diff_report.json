@@ -1,0 +1,29 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-07T17:06:58.134Z",
+  "summary": "REQ-25 appears implemented: the footer now includes a visible website link with text \"www.vinodelectricals.com\" and an href of exactly \"https://www.vinodelectricals.com\". The Admin link remains present as \"#/admin\". Two additional files (frontend-file-summaries.txt and project_state.json) were modified though not requested by the BuildRequest.",
+  "missing_requirements": [],
+  "hallucinated_features": [
+    {
+      "description": "Updated/added repository documentation or metadata summaries unrelated to the requested footer link change (frontend-file-summaries.txt).",
+      "reason": "BuildRequest only asks to update the footer website link; it does not request updating summary/manifest files.",
+      "evidence": [
+        "frontend-file-summaries.txt"
+      ]
+    },
+    {
+      "description": "Updated project state/metadata file (project_state.json).",
+      "reason": "BuildRequest does not request any change to project tracking/state files; only the footer link behavior/text is in scope.",
+      "evidence": [
+        "project_state.json"
+      ]
+    }
+  ],
+  "confidence": 0.78,
+  "changed_files": [
+    "frontend-file-summaries.txt",
+    "frontend/src/components/site/Footer.tsx",
+    "project_state.json"
+  ]
+}

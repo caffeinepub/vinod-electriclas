@@ -1,0 +1,23 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Update footer website link to open www.vinodelectricals.com",
+  "requirements": [
+    {
+      "id": "REQ-25",
+      "summary": "Add a visible footer website link that displays \"www.vinodelectricals.com\" and opens exactly https://www.vinodelectricals.com without impacting the existing Admin link.",
+      "acceptanceCriteria": [
+        "The footer contains a visible website link whose displayed text is exactly \"www.vinodelectricals.com\".",
+        "Clicking the footer website link navigates to (or opens) exactly https://www.vinodelectricals.com.",
+        "No other footer links (e.g., the Admin link) are changed or broken."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/site/Footer.tsx",
+          "operation": "modify",
+          "description": "Add/update a dedicated website <a> in the footer with href set to exactly \"https://www.vinodelectricals.com\" and link text set to exactly \"www.vinodelectricals.com\". Place it alongside the existing footer links while keeping the current Admin hash link unchanged and functional."
+        }
+      ]
+    }
+  ]
+}
