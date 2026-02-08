@@ -115,6 +115,7 @@ export interface backendInterface {
     _initializeAccessControlWithSecret(userSecret: string): Promise<void>;
     assignCallerUserRole(user: Principal, role: UserRole): Promise<void>;
     getAllSubmissions(): Promise<Array<ContactSubmission>>;
+    getAllSubmissionsWithPassword(password: string): Promise<Array<ContactSubmission>>;
     getCallerUserProfile(): Promise<UserProfile | null>;
     getCallerUserRole(): Promise<UserRole>;
     getUserProfile(user: Principal): Promise<UserProfile | null>;
@@ -164,6 +165,20 @@ export class Backend implements backendInterface {
             }
         } else {
             const result = await this.actor.getAllSubmissions();
+            return result;
+        }
+    }
+    async getAllSubmissionsWithPassword(arg0: string): Promise<Array<ContactSubmission>> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getAllSubmissionsWithPassword(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getAllSubmissionsWithPassword(arg0);
             return result;
         }
     }

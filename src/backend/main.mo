@@ -3,10 +3,8 @@ import Array "mo:core/Array";
 import Runtime "mo:core/Runtime";
 import Time "mo:core/Time";
 import Principal "mo:core/Principal";
-
 import MixinAuthorization "authorization/MixinAuthorization";
 import AccessControl "authorization/access-control";
-
 
 actor {
   // Initialize the access control state
@@ -63,6 +61,19 @@ actor {
     array.reverse();
   };
 
+  // Password-protected: Fetch all submissions using shared password
+  // This is a read-only operation, so it should be a query function
+  public shared query ({ caller }) func getAllSubmissionsWithPassword(password : Text) : async [ContactSubmission] {
+    if (password != "harsh600606") {
+      Runtime.trap("Unauthorized: Invalid password");
+    };
+
+    let array = submissions.toArray().map(
+      func((_, submission)) { submission }
+    );
+    array.reverse();
+  };
+
   // User profile management functions (required by instructions)
 
   public shared query ({ caller }) func getCallerUserProfile() : async ?UserProfile {
@@ -86,4 +97,3 @@ actor {
     userProfiles.add(caller, profile);
   };
 };
-

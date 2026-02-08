@@ -33,6 +33,11 @@ export const idlService = IDL.Service({
   '_initializeAccessControlWithSecret' : IDL.Func([IDL.Text], [], []),
   'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
   'getAllSubmissions' : IDL.Func([], [IDL.Vec(ContactSubmission)], ['query']),
+  'getAllSubmissionsWithPassword' : IDL.Func(
+      [IDL.Text],
+      [IDL.Vec(ContactSubmission)],
+      ['query'],
+    ),
   'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
   'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
   'getUserProfile' : IDL.Func(
@@ -73,6 +78,11 @@ export const idlFactory = ({ IDL }) => {
     '_initializeAccessControlWithSecret' : IDL.Func([IDL.Text], [], []),
     'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
     'getAllSubmissions' : IDL.Func([], [IDL.Vec(ContactSubmission)], ['query']),
+    'getAllSubmissionsWithPassword' : IDL.Func(
+        [IDL.Text],
+        [IDL.Vec(ContactSubmission)],
+        ['query'],
+      ),
     'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
     'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
     'getUserProfile' : IDL.Func(

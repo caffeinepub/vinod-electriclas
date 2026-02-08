@@ -1,34 +1,76 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-07T17:06:58.136Z",
+  "generatedAt": "2026-02-08T06:12:53.998Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 1,
-    "implemented": 1,
+    "total": 4,
+    "implemented": 3,
     "items": [
       {
-        "id": "REQ-25",
-        "summary": "Add or update the website link shown in the site footer so that its link destination (href) opens exactly https://www.vinodelectricals.com, and the displayed link text is exactly \"www.vinodelectricals.com\" (no protocol).",
+        "id": "REQ-1",
+        "summary": "Update the /admin experience so it no longer requires Internet Identity login and no longer prompts for a name/profile; instead, show a password-only login form and grant access when the password equals exactly \"harsh600606\".",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/components/site/Footer.tsx"
+          "frontend/src/components/admin/AdminPage.tsx",
+          "frontend/src/hooks/useAdminPasswordSession.ts"
         ],
         "matchedFiles": [
-          "frontend/src/components/site/Footer.tsx"
+          "frontend/src/components/admin/AdminPage.tsx",
+          "frontend/src/hooks/useAdminPasswordSession.ts"
+        ]
+      },
+      {
+        "id": "REQ-2",
+        "summary": "Add a backend API that allows fetching the stored contact/quote submissions using the shared password \"harsh600606\" so that the admin dashboard can load submissions without Internet Identity admin permissions.",
+        "status": "unknown",
+        "plannedFiles": [],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-3",
+        "summary": "Update the admin dashboard UI to fetch and display the quote replies (contact/quote submissions: name, phone, email, message, date) after successful password login, and remove the current 'Access Denied / Only authorized administrators' blocking state for password-authenticated users.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/hooks/useQueries.ts",
+          "frontend/src/components/admin/AdminPage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/hooks/useQueries.ts",
+          "frontend/src/components/admin/AdminPage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-4",
+        "summary": "Persist the successful admin password session on the client so that refreshing the page or navigating away/back to #/admin during the same browser session does not require re-entering the password; provide a clear 'Log out' action that clears the session and returns the user to the password prompt.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/hooks/useAdminPasswordSession.ts",
+          "frontend/src/components/admin/AdminPage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/hooks/useAdminPasswordSession.ts",
+          "frontend/src/components/admin/AdminPage.tsx"
         ]
       }
     ]
   },
   "changedFiles": [
+    "backend/main.mo",
     "build-request.json",
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/src/components/site/Footer.tsx",
+    "frontend/src/backend.d.ts",
+    "frontend/src/backend.ts",
+    "frontend/src/components/admin/AdminPage.tsx",
+    "frontend/src/declarations/backend.did.d.ts",
+    "frontend/src/declarations/backend.did.js",
+    "frontend/src/hooks/useAdminPasswordSession.ts",
+    "frontend/src/hooks/useQueries.ts",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

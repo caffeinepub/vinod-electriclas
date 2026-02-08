@@ -35,6 +35,21 @@ export function useGetAllSubmissions() {
   });
 }
 
+// Get all submissions with password authentication
+export function useGetAllSubmissionsWithPassword(password: string, enabled: boolean = false) {
+  const { actor, isFetching: actorFetching } = useActor();
+
+  return useQuery<ContactSubmission[]>({
+    queryKey: ['submissions-password', password],
+    queryFn: async () => {
+      if (!actor) throw new Error('Actor not available');
+      return actor.getAllSubmissionsWithPassword(password);
+    },
+    enabled: !!actor && !actorFetching && enabled && !!password,
+    retry: false,
+  });
+}
+
 // Submit a contact form
 export function useSubmitContactForm() {
   const { actor } = useActor();
@@ -48,6 +63,7 @@ export function useSubmitContactForm() {
     onSuccess: () => {
       // Invalidate submissions query so admin list refreshes
       queryClient.invalidateQueries({ queryKey: ['submissions'] });
+      queryClient.invalidateQueries({ queryKey: ['submissions-password'] });
     },
   });
 }

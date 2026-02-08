@@ -1,21 +1,68 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Update footer website link to open www.vinodelectricals.com",
+  "title": "Password-only admin access and password-gated submissions viewing",
   "requirements": [
     {
-      "id": "REQ-25",
-      "summary": "Add a visible footer website link that displays \"www.vinodelectricals.com\" and opens exactly https://www.vinodelectricals.com without impacting the existing Admin link.",
+      "id": "REQ-1",
+      "summary": "Replace Internet Identity + profile setup on #/admin with a password-only login gate that unlocks the admin view when the password matches exactly \"harsh600606\".",
       "acceptanceCriteria": [
-        "The footer contains a visible website link whose displayed text is exactly \"www.vinodelectricals.com\".",
-        "Clicking the footer website link navigates to (or opens) exactly https://www.vinodelectricals.com.",
-        "No other footer links (e.g., the Admin link) are changed or broken."
+        "Navigating to #/admin shows a screen with a single password input and a submit button (no Internet Identity login button and no name/profile UI).",
+        "Entering an incorrect password shows an English error message and does not reveal admin content.",
+        "Entering the correct password \"harsh600606\" transitions to the admin dashboard view in the same session."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/site/Footer.tsx",
+          "path": "frontend/src/components/admin/AdminPage.tsx",
           "operation": "modify",
-          "description": "Add/update a dedicated website <a> in the footer with href set to exactly \"https://www.vinodelectricals.com\" and link text set to exactly \"www.vinodelectricals.com\". Place it alongside the existing footer links while keeping the current Admin hash link unchanged and functional."
+          "description": "Remove Internet Identity login/profile setup/admin-role gating and implement a password-only login screen for #/admin that validates against \"harsh600606\" before showing the dashboard. Use shadcn-ui components (Card, Input, Label, Button, Alert) to keep UI consistent; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/useAdminPasswordSession.ts",
+          "operation": "create",
+          "description": "Add a small session-scoped client state helper for admin password authentication (store/restore auth state for the current browser session, and expose login/logout helpers). Use existing sessionStorage behavior (and/or frontend/src/utils/urlParams.ts helpers) to persist within the same session."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "After password login, load and display quote replies (submissions) using the password-based backend capability, and show a retryable English error state on failure without the legacy Access Denied block.",
+      "acceptanceCriteria": [
+        "After correct password entry, the admin page loads and displays the submissions table/list (name, phone, email, message, date).",
+        "The 'Access Denied' card no longer appears for password-authenticated users.",
+        "If the submissions fetch fails, an English error state is shown with a retry action (or instruction to refresh)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useQueries.ts",
+          "operation": "modify",
+          "description": "Add a React Query hook to fetch submissions via the password-based backend function (getAllSubmissionsWithPassword) and ensure it can be enabled only after password-authentication. Keep existing contact-form submission behavior unchanged. Leverage core-infrastructure actor access (useActor) for backend calls; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/admin/AdminPage.tsx",
+          "operation": "modify",
+          "description": "Wire the new password-authenticated submissions query into the admin dashboard, render the submissions list (name, phone, email, message, date), remove the Access Denied flow entirely for password-authenticated users, and add an English error state with a retry action (e.g., a Retry button triggering refetch). Use shadcn-ui Table/Alert/Button components; verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Persist password-authenticated admin session across refresh/navigation within the same browser session, and provide a logout action that clears the session and returns to the password prompt.",
+      "acceptanceCriteria": [
+        "After successful login, a page refresh keeps the admin dashboard visible without re-entering the password (within the same session).",
+        "A logout button is available on the admin dashboard.",
+        "Clicking logout clears the stored session state and shows the password-only login screen again."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useAdminPasswordSession.ts",
+          "operation": "modify",
+          "description": "Implement session persistence using sessionStorage (store the authenticated state and the password required for fetching submissions for the duration of the session) and expose a logout function that clears the stored state."
+        },
+        {
+          "path": "frontend/src/components/admin/AdminPage.tsx",
+          "operation": "modify",
+          "description": "Use the session hook to (1) auto-unlock the dashboard when a valid authenticated session exists, (2) show a clear Logout button in the admin header, and (3) on logout, clear session and return to the password-only login screen. Use shadcn-ui Button for the Logout action; verify the component's usage instructions before implementing."
         }
       ]
     }

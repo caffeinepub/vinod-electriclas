@@ -1,40 +1,108 @@
 {
   "kind": "build_request",
-  "title": "Update footer website link to open www.vinodelectricals.com",
+  "title": "Replace Internet Identity admin gate with password-only login and show quote replies after login",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-25",
-      "text": "Add or update the website link shown in the site footer so that its link destination (href) opens exactly https://www.vinodelectricals.com, and the displayed link text is exactly \"www.vinodelectricals.com\" (no protocol).",
+      "id": "REQ-1",
+      "text": "Update the /admin experience so it no longer requires Internet Identity login and no longer prompts for a name/profile; instead, show a password-only login form and grant access when the password equals exactly \"harsh600606\".",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-7",
-          "msg-10",
-          "msg-12"
+          "msg-1"
         ],
         "quotes": [
-          "the link through which website will open that should only be www.vinodelectricals.com",
-          "1",
-          "build"
+          "stop asking my name and save profile as name... ONLY ASK PASSWORD AND GIVE ME ACCESS",
+          "yes rebuild and plase make sure that i can access admin page with the password harsh600606",
+          "BUILD AND SHOW AFTER ADDING PASSWORD THE QOUTES REPLY"
         ]
       },
       "acceptanceCriteria": [
-        "The footer contains a visible website link whose displayed text is exactly \"www.vinodelectricals.com\".",
-        "Clicking the footer website link navigates to (or opens) exactly https://www.vinodelectricals.com.",
-        "No other footer links (e.g., the Admin link) are changed or broken."
+        "Navigating to #/admin shows a screen with a single password input and a submit button (no Internet Identity login button and no name/profile UI).",
+        "Entering an incorrect password shows an English error message and does not reveal admin content.",
+        "Entering the correct password \"harsh600606\" transitions to the admin dashboard view in the same session."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Add a backend API that allows fetching the stored contact/quote submissions using the shared password \"harsh600606\" so that the admin dashboard can load submissions without Internet Identity admin permissions.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "make sure that i can access admin page with the password harsh600606",
+          "BUILD AND SHOW AFTER ADDING PASSWORD THE QOUTES REPLY"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend exposes a new method to retrieve the submissions list that validates the provided password and traps/returns an error on mismatch.",
+        "When the correct password is provided, the method returns the same data as the existing admin-only submissions list (reverse-chronological order).",
+        "Existing submission creation (contact form) continues to work unchanged."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Update the admin dashboard UI to fetch and display the quote replies (contact/quote submissions: name, phone, email, message, date) after successful password login, and remove the current 'Access Denied / Only authorized administrators' blocking state for password-authenticated users.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "why it is saying only authorised access  make the admin panel accessible to me",
+          "BUILD AND SHOW AFTER ADDING PASSWORD THE QOUTES REPLY"
+        ]
+      },
+      "acceptanceCriteria": [
+        "After correct password entry, the admin page loads and displays the submissions table/list (name, phone, email, message, date).",
+        "The 'Access Denied' card no longer appears for password-authenticated users.",
+        "If the submissions fetch fails, an English error state is shown with a retry action (or instruction to refresh)."
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Persist the successful admin password session on the client so that refreshing the page or navigating away/back to #/admin during the same browser session does not require re-entering the password; provide a clear 'Log out' action that clears the session and returns the user to the password prompt.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "ONLY ASK PASSWORD AND GIVE ME ACCESS"
+        ]
+      },
+      "acceptanceCriteria": [
+        "After successful login, a page refresh keeps the admin dashboard visible without re-entering the password (within the same session).",
+        "A logout button is available on the admin dashboard.",
+        "Clicking logout clears the stored session state and shows the password-only login screen again."
       ]
     }
   ],
   "constraints": [
-    "Do not modify files under frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, or anything under frontend/src/components/ui."
+    "Backend must remain a single Motoko actor (all logic in backend/main.mo).",
+    "Do not modify any files under frontend/src/components/ui or any paths listed as immutable in SYSTEM_CONTEXT (compose existing UI components instead).",
+    "Use English for all user-facing text (labels, errors, headings).",
+    "Do not require Internet Identity for admin access in this password-only flow."
   ],
   "nonGoals": [
-    "Do not change any backend canister logic.",
-    "Do not redesign unrelated footer content or change contact details."
+    "Custom domain/DNS setup for www.vinodelectricals.com.",
+    "Admin dashboard features beyond viewing quote replies (e.g., editing site content, managing images/text).",
+    "Adding third-party authentication or external databases."
   ],
   "imageRequirements": {
     "required": [],
     "edits": []
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
   }
 }

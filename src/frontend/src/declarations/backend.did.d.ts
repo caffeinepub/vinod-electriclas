@@ -32,6 +32,10 @@ export interface _SERVICE {
   '_initializeAccessControlWithSecret' : ActorMethod<[string], undefined>,
   'assignCallerUserRole' : ActorMethod<[Principal, UserRole], undefined>,
   'getAllSubmissions' : ActorMethod<[], Array<ContactSubmission>>,
+  'getAllSubmissionsWithPassword' : ActorMethod<
+    [string],
+    Array<ContactSubmission>
+  >,
   'getCallerUserProfile' : ActorMethod<[], [] | [UserProfile]>,
   'getCallerUserRole' : ActorMethod<[], UserRole>,
   'getUserProfile' : ActorMethod<[Principal], [] | [UserProfile]>,

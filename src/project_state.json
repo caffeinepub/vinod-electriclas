@@ -1,194 +1,37 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 21,
-  "summary": "Create a marketing website for Vinod Electriclas as a company focused on electrical panels, meters, and motors (not an electrician services company).",
+  "projectStateVersion": 3,
+  "summary": "Website project for vinodelectricals.com with a publicly reachable /admin area secured by a simple password and an admin dashboard to view/manage site content and client quote responses; also needs custom domain setup so www.vinodelectricals.com loads the site.",
   "architectural_notes": [
-    "Business domain clarification: Vinod Electriclas sells/handles electrical panels, meters, and motors (not electrician services).",
-    "Contact details to display: +91-9868119838, +91-9213538815, vinodkumar0228@gmail.com, Shahdara, Delhi.",
-    "Form submissions must be persisted server-side and displayed on an Internet Identity–protected admin page (view-only list).",
-    "Footer website link target (href) should be https://www.vinodelectricals.com."
+    "Admin authentication is a single password field (no username/name collection).",
+    "Admin route is publicly reachable at /admin; access controlled by password harsh600606."
   ],
   "known_issues": [
-    "Current site content/imagery is oriented toward electrician services; needs updating to panels/meters/motors business.",
-    "Panel/meter photos are not yet provided/uploaded, so imagery update cannot be completed until assets are received.",
-    "Build/deploy failed with error: 'Unable to create your app' (needs rerun/troubleshooting).",
-    "Site currently contains unwanted/incorrect content string: \"3vx caffeine\" (must be removed)."
+    "/admin not accessible / shows 'only authorised access' to the user; needs rebuild/deploy so password login works."
   ],
-  "isFixRequest": false,
+  "isFixRequest": true,
   "existing_features": [
     {
-      "id": "feature-create-a-responsive-marketing-website-for-the-business-name-vinod-electriclas-with-a-clear-information-architecture-top-navigation-home-services-about-contact-a-footer-and-smooth-in-page-section-navigation",
-      "title": "Create a responsive marketing website for the business name “Vinod Electriclas” with a clear information architecture: top navigation (Home, Services, About, Contact), a footer, and smooth in-page section navigation.",
+      "id": "feature-update-the-admin-experience-so-it-no-longer-requires-internet-identity-login-and-no-longer-prompts-for-a-name-profile-instead-show-a-password-only-login-form-and-grant-access-when-the-password-equals-exactly-harsh600606",
+      "title": "Update the /admin experience so it no longer requires Internet Identity login and no longer prompts for a name/profile; instead, show a password-only login form and grant access when the password equals exactly \"harsh600606\".",
       "reqIds": [
         "REQ-1"
       ],
       "version": 1
     },
     {
-      "id": "feature-add-core-content-sections-with-english-copy-placeholders-that-can-be-easily-edited-hero-headline-short-description-primary-call-to-action-services-at-least-4-electrical-service-cards-about-company-overview-why-choose-us-3-6-bullet-points-and-contact-contact-details-contact-form-ui",
-      "title": "Add core content sections with English copy placeholders that can be easily edited: Hero (headline + short description + primary call-to-action), Services (at least 4 electrical service cards), About (company overview), Why Choose Us (3–6 bullet points), and Contact (contact details + contact form UI).",
-      "reqIds": [
-        "REQ-2"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-implement-contact-form-behavior-on-the-frontend-validation-submission-ux-and-a-non-breaking-submission-path-e-g-show-a-success-message-and-log-temporarily-store-locally-without-requiring-any-third-party-integrations",
-      "title": "Implement contact form behavior on the frontend: validation, submission UX, and a non-breaking submission path (e.g., show a success message and log/temporarily store locally) without requiring any third-party integrations.",
+      "id": "feature-update-the-admin-dashboard-ui-to-fetch-and-display-the-quote-replies-contact-quote-submissions-name-phone-email-message-date-after-successful-password-login-and-remove-the-current-access-denied-only-authorized-administrators-blocking-state-for-password-authenticated-users",
+      "title": "Update the admin dashboard UI to fetch and display the quote replies (contact/quote submissions: name, phone, email, message, date) after successful password login, and remove the current 'Access Denied / Only authorized administrators' blocking state for password-authenticated users.",
       "reqIds": [
         "REQ-3"
       ],
       "version": 1
     },
     {
-      "id": "feature-add-basic-seo-accessibility-fundamentals-document-title-meta-description-semantic-headings-accessible-form-labels-and-focus-visible-states-for-interactive-elements",
-      "title": "Add basic SEO/accessibility fundamentals: document title, meta description, semantic headings, accessible form labels, and focus-visible states for interactive elements.",
+      "id": "feature-persist-the-successful-admin-password-session-on-the-client-so-that-refreshing-the-page-or-navigating-away-back-to-admin-during-the-same-browser-session-does-not-require-re-entering-the-password-provide-a-clear-log-out-action-that-clears-the-session-and-returns-the-user-to-the-password-prompt",
+      "title": "Persist the successful admin password session on the client so that refreshing the page or navigating away/back to #/admin during the same browser session does not require re-entering the password; provide a clear 'Log out' action that clears the session and returns the user to the password prompt.",
       "reqIds": [
         "REQ-4"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-establish-and-apply-a-coherent-visual-theme-colors-typography-spacing-component-style-suitable-for-an-electrical-services-business-use-a-distinct-style-and-apply-it-consistently-across-the-site-avoid-default-looking-ui",
-      "title": "Establish and apply a coherent visual theme (colors, typography, spacing, component style) suitable for an electrical services business; use a distinct style and apply it consistently across the site (avoid default-looking UI).",
-      "reqIds": [
-        "REQ-5"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-render-the-generated-brand-images-as-static-assets-from-frontend-public-assets-generated-and-use-them-in-the-ui-logo-in-header-footer-hero-image-in-the-hero-section",
-      "title": "Render the generated brand images as static assets from frontend/public/assets/generated and use them in the UI (logo in header/footer; hero image in the hero section).",
-      "reqIds": [
-        "REQ-6"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-update-all-homepage-positioning-copy-so-vinod-electriclas-is-presented-as-a-company-focused-on-electrical-panels-meters-and-motors-not-an-electrician-services-provider-this-includes-updating-the-hero-services-about-why-choose-us-header-cta-labels-contact-intro-text-and-footer-tagline-to-remove-electrician-service-messaging-e-g-wiring-rewiring-licensed-electricians-24-7-emergency-service-and-replace-it-with-product-company-messaging-aligned-to-panels-meters-and-motors",
-      "title": "Update all homepage positioning copy so Vinod Electriclas is presented as a company focused on electrical panels, meters, and motors (not an electrician services provider). This includes updating the Hero, Services, About, Why Choose Us, Header CTA labels, Contact intro text, and Footer tagline to remove electrician-service messaging (e.g., wiring/rewiring, licensed electricians, 24/7 emergency service) and replace it with product/company messaging aligned to panels, meters, and motors.",
-      "reqIds": [
-        "REQ-7"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-update-basic-seo-metadata-in-frontend-index-html-to-match-the-panels-meters-motors-business-positioning-page-title-and-meta-description-removing-electrician-services-keywords-and-replacing-them-with-panels-meters-motors-wording-in-english",
-      "title": "Update basic SEO metadata in frontend/index.html to match the panels/meters/motors business positioning (page <title> and meta description), removing electrician-services keywords and replacing them with panels/meters/motors wording in English.",
-      "reqIds": [
-        "REQ-8"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-update-accessibility-text-associated-with-imagery-to-reflect-the-panels-meters-motors-business-e-g-hero-image-alt-text-and-remove-electrician-service-specific-alt-text",
-      "title": "Update accessibility text associated with imagery to reflect the panels/meters/motors business (e.g., hero image alt text) and remove electrician-service-specific alt text.",
-      "reqIds": [
-        "REQ-9"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-update-all-displayed-business-contact-details-to-use-the-correct-phone-numbers-email-address-and-location-phone-91-9868119838-and-91-9213538815-email-vinodkumar0228-gmail-com-address-shahdara-delhi",
-      "title": "Update all displayed business contact details to use the correct phone numbers, email address, and location: Phone: +91-9868119838 and +91-9213538815; Email: vinodkumar0228@gmail.com; Address: Shahdara, Delhi.",
-      "reqIds": [
-        "REQ-10"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-the-provided-photos-of-electrical-panels-and-meters-as-static-assets-under-frontend-public-assets-generated-and-display-them-on-the-homepage-in-a-responsive-layout-e-g-a-small-product-gallery-section-or-an-image-row-grid-in-the-products-section",
-      "title": "Add the provided photos of electrical panels and meters as static assets under frontend/public/assets/generated and display them on the homepage in a responsive layout (e.g., a small product gallery section or an image row/grid in the Products section).",
-      "reqIds": [
-        "REQ-11"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-replace-the-current-hero-image-with-one-of-the-real-panel-meter-photos-or-a-collage-derived-from-them-while-keeping-the-hero-section-s-panels-meters-motors-positioning-and-ensuring-the-hero-image-alt-text-remains-accurate-and-in-english",
-      "title": "Replace the current hero image with one of the real panel/meter photos (or a collage derived from them) while keeping the hero section’s panels/meters/motors positioning and ensuring the hero image alt text remains accurate and in English.",
-      "reqIds": [
-        "REQ-12"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-the-uploaded-company-logo-image-s-to-the-frontend-static-assets-and-use-the-uploaded-logo-as-the-displayed-logo-in-the-site-header-and-footer-replacing-the-current-assets-generated-vinod-electriclas-logo-dim-512x512-png-reference-uploaded-files-to-use-whatsapp-image-2026-02-07-at-9-27-57-pm-3-2-jpeg-and-whatsapp-image-2026-02-07-at-9-27-57-pm-3-3-jpeg",
-      "title": "Add the uploaded company logo image(s) to the frontend static assets and use the uploaded logo as the displayed logo in the site header and footer (replacing the current /assets/generated/vinod-electriclas-logo.dim_512x512.png reference). Uploaded files to use: “WhatsApp Image 2026-02-07 at 9.27.57 PM (3)-2.jpeg” and “WhatsApp Image 2026-02-07 at 9.27.57 PM (3)-3.jpeg”.",
-      "reqIds": [
-        "REQ-13"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-remove-the-business-hours-section-from-the-website-footer",
-      "title": "Remove the “Business Hours” section from the website footer.",
-      "reqIds": [
-        "REQ-14"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-the-newly-uploaded-logo-file-whatsapp-image-2026-02-07-at-9-27-57-pm-jpeg-to-the-frontend-static-assets-under-frontend-public-assets-generated-and-update-the-site-header-and-footer-to-display-this-uploaded-logo-instead-of-the-current-assets-generated-vinod-electriclas-logo-dim-512x512-png-logo-reference",
-      "title": "Add the newly uploaded logo file “WhatsApp Image 2026-02-07 at 9.27.57 PM.jpeg” to the frontend static assets (under frontend/public/assets/generated) and update the site header and footer to display this uploaded logo instead of the current /assets/generated/vinod-electriclas-logo.dim_512x512.png logo reference.",
-      "reqIds": [
-        "REQ-15"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-update-the-ui-where-a-url-is-displayed-in-the-footer-so-the-url-presentation-is-smaller-and-more-concise-e-g-show-only-the-domain-text-without-protocol-while-keeping-the-underlying-link-target-unchanged",
-      "title": "Update the UI where a URL is displayed in the footer so the URL presentation is smaller and more concise (e.g., show only the domain text, without protocol), while keeping the underlying link target unchanged.",
-      "reqIds": [
-        "REQ-16"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-remove-any-occurrence-of-the-text-content-3vx-caffeine-from-the-website-ui-and-any-user-visible-copy-including-footer-credits-or-any-other-branding-attribution-text",
-      "title": "Remove any occurrence of the text/content “3vx caffeine” from the website UI and any user-visible copy (including footer credits or any other branding/attribution text).",
-      "reqIds": [
-        "REQ-17"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-update-the-footer-credits-area-currently-showing-built-with-using-caffeine-ai-with-a-link-to-https-caffeine-ai-so-it-no-longer-displays-or-links-to-caffeine-branding-and-replace-it-with-neutral-business-appropriate-copyright-text",
-      "title": "Update the footer credits area (currently showing “Built with … using caffeine.ai” with a link to https://caffeine.ai) so it no longer displays or links to Caffeine branding, and replace it with neutral business-appropriate copyright text.",
-      "reqIds": [
-        "REQ-18"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-an-admin-page-in-the-react-frontend-to-view-all-contact-quote-submissions-in-a-simple-list-table-name-phone-email-message-date-with-view-only-access",
-      "title": "Add an Admin page in the React frontend to view all contact/quote submissions in a simple list/table (name, phone, email, message, date), with view-only access.",
-      "reqIds": [
-        "REQ-22"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-update-the-existing-contact-quote-form-submission-flow-to-send-submissions-to-the-backend-and-show-success-error-ux-accordingly",
-      "title": "Update the existing contact/quote form submission flow to send submissions to the backend and show success/error UX accordingly.",
-      "reqIds": [
-        "REQ-23"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-use-react-query-for-fetching-admin-list-data-and-keep-frontend-changes-compatible-with-the-existing-internet-identity-and-actor-hooks-without-modifying-immutable-hook-source-files",
-      "title": "Use React Query for fetching/admin list data and keep frontend changes compatible with the existing Internet Identity and actor hooks without modifying immutable hook source files.",
-      "reqIds": [
-        "REQ-24"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-or-update-the-website-link-shown-in-the-site-footer-so-that-its-link-destination-href-opens-exactly-https-www-vinodelectricals-com-and-the-displayed-link-text-is-exactly-www-vinodelectricals-com-no-protocol",
-      "title": "Add or update the website link shown in the site footer so that its link destination (href) opens exactly https://www.vinodelectricals.com, and the displayed link text is exactly \"www.vinodelectricals.com\" (no protocol).",
-      "reqIds": [
-        "REQ-25"
       ],
       "version": 1
     }
@@ -196,91 +39,38 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Build a website for Vinod Electriclas.",
+      "summary": "Create publicly accessible /admin page with password-only login (no name/profile prompts) using password harsh600606",
       "reqIds": [],
       "status": "pending"
     },
     {
       "id": "AR-2",
-      "summary": "Revise site positioning, copy, services/products sections, and imagery to reflect panels, meters, and motors (instead of electrician services).",
+      "summary": "Admin dashboard to view client quote responses (quotes replies) after successful login",
       "reqIds": [],
       "status": "pending"
     },
     {
       "id": "AR-3",
-      "summary": "Add uploaded photos of electrical panels and meters to appropriate sections (including replacing hero image if needed).",
+      "summary": "Admin dashboard to manage all site content (quotes, images, text sections, etc.)",
       "reqIds": [],
       "status": "pending"
     },
     {
       "id": "AR-4",
-      "summary": "Update site contact details to correct phone numbers, email, and address (Shahdara, Delhi).",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-5",
-      "summary": "Remove the Business Hours section from the website.",
+      "summary": "Set up custom domain so www.vinodelectricals.com loads the deployed website (DNS/domain connection)",
       "reqIds": [],
       "status": "pending"
     },
     {
       "id": "AR-6",
-      "summary": "Add the company logo to the top header and in the bottom/footer area of the website.",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-7",
-      "summary": "Make the website URL very small and precise (shorten/simplify how the URL is presented).",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-8",
-      "summary": "Remove any occurrence of the text/content \"3vx caffeine\" from the website.",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-9",
-      "summary": "Add an Internet Identity–protected admin page to view contact/quote form submissions in a simple list (name, phone, email, message, date) with view-only access.",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-10",
-      "summary": "Persist contact/quote form submissions in the Motoko backend (instead of only localStorage) with fields: name, phone, email, message, and submittedAt timestamp.",
+      "summary": "Add a backend API that allows fetching the stored contact/quote submissions using the shared password \"harsh600606\" so that the admin dashboard can load submissions without Internet Identity admin permissions.",
       "reqIds": [
-        "REQ-19"
+        "REQ-2"
       ],
       "status": "pending"
-    },
-    {
-      "id": "AR-11",
-      "summary": "Add backend support for an Internet Identity–protected admin-only API to list all stored contact/quote submissions in reverse-chronological order.",
-      "reqIds": [
-        "REQ-20"
-      ],
-      "status": "pending"
-    },
-    {
-      "id": "AR-12",
-      "summary": "Implement admin authorization for viewing submissions using Internet Identity principals, including a safe bootstrap mechanism for the first admin.",
-      "reqIds": [
-        "REQ-21"
-      ],
-      "status": "pending"
-    },
-    {
-      "id": "AR-13",
-      "summary": "Change the footer website link destination (href) to open https://www.vinodelectricals.com (not just display text styling).",
-      "reqIds": [],
-      "status": "in_progress"
     }
   ],
-  "gameProjectType": "none",
-  "projectName": "Vinod Electriclas",
+  "projectName": "Replace Internet Identity admin gate with password-only login and show quote replies after login",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

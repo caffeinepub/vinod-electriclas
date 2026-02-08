@@ -1,29 +1,34 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-07T17:06:58.134Z",
-  "summary": "REQ-25 appears implemented: the footer now includes a visible website link with text \"www.vinodelectricals.com\" and an href of exactly \"https://www.vinodelectricals.com\". The Admin link remains present as \"#/admin\". Two additional files (frontend-file-summaries.txt and project_state.json) were modified though not requested by the BuildRequest.",
+  "generatedAt": "2026-02-08T06:12:53.995Z",
+  "summary": "Implemented password-only admin login with session persistence and added a password-protected backend query to fetch submissions. AdminPage now uses the password session to enable fetching via a new React Query hook. However, the diff also introduces unrelated user profile/admin-check functionality that was not requested.",
   "missing_requirements": [],
   "hallucinated_features": [
     {
-      "description": "Updated/added repository documentation or metadata summaries unrelated to the requested footer link change (frontend-file-summaries.txt).",
-      "reason": "BuildRequest only asks to update the footer website link; it does not request updating summary/manifest files.",
+      "description": "Added user profile management API (get/save caller profile, get user profile) and related frontend hooks, which are not part of the password-only admin + submissions viewing request.",
+      "reason": "BuildRequest focuses only on replacing Internet Identity admin gate with password-only login and displaying quote submissions; it does not request any user profile storage or profile CRUD APIs.",
       "evidence": [
-        "frontend-file-summaries.txt"
+        "backend/main.mo (UserProfile type, userProfiles map, getCallerUserProfile, getUserProfile, saveCallerUserProfile)",
+        "frontend/src/hooks/useQueries.ts (useGetCallerUserProfile, useSaveCallerUserProfile)"
       ]
     },
     {
-      "description": "Updated project state/metadata file (project_state.json).",
-      "reason": "BuildRequest does not request any change to project tracking/state files; only the footer link behavior/text is in scope.",
+      "description": "Added/retained Internet Identity-based admin check and admin-only submissions query hooks, despite the request to remove Internet Identity from the /admin flow.",
+      "reason": "REQ-1/REQ-3 specify the /admin experience should not require Internet Identity. While these hooks may be used elsewhere, they are additional to the requested password-only admin flow.",
       "evidence": [
-        "project_state.json"
+        "frontend/src/hooks/useQueries.ts (useInternetIdentity import, useIsCallerAdmin, useGetAllSubmissions)",
+        "backend/main.mo (getAllSubmissions remains admin-permission gated)"
       ]
     }
   ],
-  "confidence": 0.78,
+  "confidence": 0.72,
   "changed_files": [
+    "backend/main.mo",
     "frontend-file-summaries.txt",
-    "frontend/src/components/site/Footer.tsx",
+    "frontend/src/components/admin/AdminPage.tsx",
+    "frontend/src/hooks/useAdminPasswordSession.ts",
+    "frontend/src/hooks/useQueries.ts",
     "project_state.json"
   ]
 }

@@ -2,10 +2,11 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-add-or-update-the-website-link-shown-in-the-site-footer-so-that-its-link-destination-href-opens-exactly-https-www-vinodelectricals-com-and-the-displayed-link-text-is-exactly-www-vinodelectricals-com-no-protocol",
-      "featureTitle": "Add or update the website link shown in the site footer so that its link destination (href) opens exactly https://www.vinodelectricals.com, and the displayed link text is exactly \"www.vinodelectricals.com\" (no protocol).",
+      "featureId": "feature-update-the-admin-experience-so-it-no-longer-requires-internet-identity-login-and-no-longer-prompts-for-a-name-profile-instead-show-a-password-only-login-form-and-grant-access-when-the-password-equals-exactly-harsh600606",
+      "featureTitle": "Update the /admin experience so it no longer requires Internet Identity login and no longer prompts for a name/profile; instead, show a password-only login form and grant access when the password equals exactly \"harsh600606\".",
       "files": [
-        "frontend/src/components/site/Footer.tsx"
+        "frontend/src/components/admin/AdminPage.tsx",
+        "frontend/src/hooks/useAdminPasswordSession.ts"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -16,7 +17,47 @@
         "authorization@4.0.0"
       ],
       "testIds": [
-        "REQ-25"
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-update-the-admin-dashboard-ui-to-fetch-and-display-the-quote-replies-contact-quote-submissions-name-phone-email-message-date-after-successful-password-login-and-remove-the-current-access-denied-only-authorized-administrators-blocking-state-for-password-authenticated-users",
+      "featureTitle": "Update the admin dashboard UI to fetch and display the quote replies (contact/quote submissions: name, phone, email, message, date) after successful password login, and remove the current 'Access Denied / Only authorized administrators' blocking state for password-authenticated users.",
+      "files": [
+        "frontend/src/components/admin/AdminPage.tsx",
+        "frontend/src/hooks/useQueries.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-persist-the-successful-admin-password-session-on-the-client-so-that-refreshing-the-page-or-navigating-away-back-to-admin-during-the-same-browser-session-does-not-require-re-entering-the-password-provide-a-clear-log-out-action-that-clears-the-session-and-returns-the-user-to-the-password-prompt",
+      "featureTitle": "Persist the successful admin password session on the client so that refreshing the page or navigating away/back to #/admin during the same browser session does not require re-entering the password; provide a clear 'Log out' action that clears the session and returns the user to the password prompt.",
+      "files": [
+        "frontend/src/components/admin/AdminPage.tsx",
+        "frontend/src/hooks/useAdminPasswordSession.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
       ],
       "confidence": "high"
     }
